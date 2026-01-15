@@ -291,7 +291,7 @@ Built for learning, freelancing, and ethical outreach.
 
 ## 📄 License
 
-MIT License — free to use, modify, and learn from.
+ free to use, modify, and learn from.
 
 ---
 
@@ -301,3 +301,4 @@ Run:
 ```bash
 python agent.py
 ```
+
