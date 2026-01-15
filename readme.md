@@ -1,20 +1,14 @@
-# 🍽️ Restaurant Outreach Agent (Frontend Lead Generator)
+# 🍽️ Restaurant Outreach Agent
 
-This project is a **local, AI-powered outreach agent** that helps a frontend developer find **real restaurant clients** and send them polite cold emails.
+### *AI‑Powered Frontend Lead Generator for Local Restaurants*
 
-The agent:
+A **beginner‑friendly, fully local AI agent** that helps frontend developers discover **real restaurant clients** and send **ethical, professional cold emails** — without using paid map APIs or scraping shady data.
 
-* **Finds nearby restaurants** using free OpenStreetMap data (Overpass API)
-* **Filters only restaurants without websites**
-* **Generates professional AI-written cold emails** (with smart fallback)
-* **Sends emails safely** with rate-limiting
-* **Logs all activity locally** to avoid duplicates
-
-The project is designed for **beginners** and runs **completely locally on your computer** with **no paid APIs required**.
+> 🎯 Built for learning, freelancing, and real‑world outreach — **not spam**.
 
 ---
 
-## 🚀 What This Agent Does
+## ✨ What This Project Does
 
 When you run:
 
@@ -22,53 +16,59 @@ When you run:
 python agent.py
 ```
 
-The agent will:
+The agent automatically:
 
-1. 🔍 **Search nearby restaurants** in your location (using free OpenStreetMap)
-2. 🧹 **Filter restaurants without websites**
-3. 📧 **Generate personalized AI emails** (or use fallback template)
-4. ✉️ **Send emails safely** with rate-limiting
-5. 📊 **Log results** in `data/contacts.csv`
+1. 🔍 **Finds nearby restaurants** using **free OpenStreetMap (Overpass API)**
+2. 🧹 **Filters restaurants that do NOT have a website**
+3. 📧 **Generates personalized outreach emails using AI**
+4. ✉️ **Sends emails safely** with built‑in rate‑limiting
+5. 📊 **Logs every action locally** to avoid duplicate outreach
 
-This helps you get **frontend projects** without bidding platforms.
+This helps you **get frontend projects directly** — without freelancing platforms or bidding wars.
 
 ---
 
 ## 🧠 Tech Stack
 
-* **Python 3.10+**
-* **Overpass API (OpenStreetMap)** – FREE restaurant data, no API key needed ✅
-* **OpenAI API** – AI email generation (with smart fallback template)
-* **Gmail SMTP** – Email sending
-* **Requests** – HTTP client for API calls
-* **CSV logging** – Agent memory
+| Tool                             | Purpose                                 |
+| -------------------------------- | --------------------------------------- |
+| **Python 3.10+**                 | Core language                           |
+| **OpenStreetMap (Overpass API)** | Free restaurant data (no API key)       |
+| **OpenAI API**                   | AI‑generated outreach emails (optional) |
+| **Gmail SMTP**                   | Safe email sending                      |
+| **Requests**                     | API communication                       |
+| **CSV**                          | Local memory & logging                  |
+
+> ✅ Runs **100% locally** on your computer
 
 ---
 
 ## 📁 Project Structure
 
-```
+```text
 restaurant-agent/
 │
-├── agent.py                 # Main agent logic
-├── config.py                # Configuration (API keys, location)
-├── requirements.txt         # Python dependencies
-├── .env                     # Environment variables
-├── readme.md                # This file
+├── agent.py              # Main agent runner
+├── config.py             # Global configuration
+├── requirements.txt      # Dependencies
+├── .env                  # Environment variables
+├── readme.md             # Documentation
+│
 ├── data/
-│   └── contacts.csv         # Contact history
+│   └── contacts.csv      # Outreach history
+│
 └── utils/
-    ├── search.py            # OpenStreetMap restaurant search
-    ├── filter.py            # Filter restaurants without websites
-    ├── ai_email.py          # AI email generation + fallback
-    ├── email_sender.py      # Gmail SMTP sender
-    ├── email_finder.py      # Email extraction (optional)
-    └── logger.py            # CSV logging
+    ├── search.py         # OpenStreetMap queries
+    ├── filter.py         # Website filtering logic
+    ├── ai_email.py       # AI + fallback email generator
+    ├── email_sender.py  # Gmail SMTP sender
+    ├── email_finder.py  # Email extraction (optional)
+    └── logger.py        # CSV logging utility
 ```
 
 ---
 
-## ⚙️ Setup Instructions
+## ⚙️ Setup Guide
 
 ### 1️⃣ Install Python
 
@@ -78,30 +78,32 @@ Check if Python is installed:
 python --version
 ```
 
-If not, download from **[python.org](https://python.org)** and check **"Add to PATH"** during installation.
+If not, download from **[https://python.org](https://python.org)** and ensure **“Add to PATH”** is checked.
 
 ---
 
-### 2️⃣ Clone or Download This Project
+### 2️⃣ Clone the Repository
 
 ```bash
 git clone https://github.com/vansharora21/restaurant-ai-.git
 cd restaurant-ai-
 ```
 
-Or download the ZIP file and extract it.
+Or download the ZIP and extract it.
 
 ---
 
-### 3️⃣ Create Virtual Environment (Recommended)
+### 3️⃣ Create a Virtual Environment (Recommended)
 
-On **Windows**:
+**Windows**
+
 ```bash
 python -m venv venv
 venv\Scripts\activate
 ```
 
-On **Mac/Linux**:
+**Mac / Linux**
+
 ```bash
 python3 -m venv venv
 source venv/bin/activate
@@ -115,17 +117,18 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-This installs:
-- `requests` – for Overpass API calls
-- `python-dotenv` – for .env file support
-- `openai` – for AI email generation
-- `beautifulsoup4` – for HTML parsing (optional)
+Installed packages:
+
+* `requests`
+* `python-dotenv`
+* `openai`
+* `beautifulsoup4` (optional)
 
 ---
 
 ### 5️⃣ Create `.env` File
 
-Create a `.env` file in the project root:
+Create a file named `.env` in the project root:
 
 ```env
 OPENAI_API_KEY="sk-your-key-here"
@@ -134,28 +137,23 @@ EMAIL_ADDRESS="your@gmail.com"
 EMAIL_PASSWORD="your_app_password"
 ```
 
-**Get your credentials:**
+#### 🔑 How to Get These Values
 
-1. **OPENAI_API_KEY** – Get from [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
-2. **LOCATION_COORDS** – Use format: `"latitude,longitude"` (e.g., Jaipur: `"26.9124,75.7873"`)
-3. **EMAIL_ADDRESS** – Your Gmail address
-4. **EMAIL_PASSWORD** – Gmail App Password (NOT your regular password)
-   - Enable 2FA on Gmail
-   - Go to [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
-   - Generate a 16-character app password
-   - Use that in `.env`
+* **OpenAI API Key** → [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+* **Location Coords** → `latitude,longitude`
+* **Gmail App Password** → [https://myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
+
+> ⚠️ Use a **Gmail App Password**, NOT your normal Gmail password
 
 ---
 
 ### 6️⃣ Create Data Directory
 
-Make sure the `data/` folder exists:
-
 ```bash
 mkdir data
 ```
 
-Create `data/contacts.csv` with headers:
+Create `data/contacts.csv`:
 
 ```csv
 name,email,status,timestamp
@@ -165,264 +163,141 @@ name,email,status,timestamp
 
 ## ▶️ Running the Agent
 
-### 🧪 Test Mode (Preview - No Emails Sent)
+### 🧪 Test Mode (Highly Recommended)
 
 ```bash
 python agent.py --test
 ```
 
-**This is the BEST way to start!** The agent will:
-- ✅ Search for mock restaurants
-- ✅ Filter those without websites
-- ✅ Generate AI emails (or use fallback)
-- ✅ Preview emails in console
-- ✅ Log to CSV
-- ❌ **NOT send any emails** (no Gmail risk)
+✔ No real emails sent
+✔ Uses mock restaurants
+✔ Generates & previews emails
+✔ Logs everything locally
 
-Perfect for **testing and demos**! 🎉
+Perfect for **testing, demos, and safety checks**.
 
 ---
 
-### 📧 Real Email Sending Mode
-
-Once you have Gmail App Password set up:
+### 📧 Live Outreach Mode
 
 ```bash
 python agent.py
 ```
 
-The agent will:
-- ✅ Search for restaurants
-- ✅ Filter those without websites  
-- ✅ Generate personalized AI emails
-- ✅ **Actually send emails** to restaurants
-- ✅ Log all sent/failed emails
-- ⏱️ Wait 4 seconds between emails (rate limit)
+✔ Searches real restaurants
+✔ Filters businesses without websites
+✔ Sends real emails via Gmail
+✔ 4–5 second delay between emails
+
+> 🚨 Start with **5–10 emails/day**
 
 ---
 
-## 🎯 Features
+## 🌟 Key Features
 
 ### ✅ Free Restaurant Data
-- Uses **Overpass API** (OpenStreetMap data)
-- **No API key required**
-- Finds restaurants by coordinates + radius
-- Extracts: name, location, website, phone, email, cuisine
+
+* Powered by **OpenStreetMap**
+* No API key required
+* Auto‑retry with multiple endpoints
 
 ### ✅ Smart Email Generation
-- Uses **OpenAI API** for personalized emails
-- **Automatic fallback** if OpenAI fails:
-  - Uses professional template
-  - Agent still works without API quota
-  - Prevents agent from crashing
 
-### ✅ Retry Logic
-- Multiple Overpass endpoints for reliability
-- Automatic retry on timeout/error
-- Better error messages
-- Handles rate limiting gracefully
+* AI‑generated personalized emails
+* Automatic **fallback template** if AI fails
+* Agent never crashes due to quota issues
 
 ### ✅ Safe Email Sending
-- Rate-limited (4-5 seconds between emails)
-- Logs all sent/failed emails
-- Prevents duplicate messaging
-- Respects anti-spam rules
 
-### ✅ Local Logging
-- All contacts saved to `data/contacts.csv`
-- Tracks: name, email, status, timestamp
-- Helps avoid sending duplicate emails
+* Built‑in rate limiting
+* Duplicate prevention
+* CSV‑based memory
 
----
+### ✅ Ethical by Design
 
-## 🔒 Anti-Spam & Ethics
-
-**Important Guidelines:**
-
-- ✅ Max 20-30 emails per day
-- ✅ 4-5 second delay between emails
-- ✅ Only message restaurants without websites
-- ✅ Include opt-out language in emails
-- ✅ Never message same restaurant twice
-- ✅ Only for legitimate business outreach
-
-This agent is designed for **ethical, value-based outreach**, not spam.
+* Targets only businesses without websites
+* Includes opt‑out language
+* Local storage only — no data selling
 
 ---
 
 ## 🐛 Troubleshooting
 
-### "❌ Failed to send email: Username and Password not accepted"
+### Gmail Authentication Error
 
-**Solution:** Gmail requires an **App Password**, not your regular password.
+✔ Enable **2‑Step Verification**
+✔ Use **App Password**
+✔ Paste password without spaces
 
-Steps:
-1. Go to: https://myaccount.google.com/security
-2. Enable **2-Step Verification** (if not already enabled)
-3. Go to: https://myaccount.google.com/apppasswords
-4. Select: **Mail** → **Windows Computer**
-5. Copy the 16-character password **WITHOUT spaces**
-6. Update `.env`:
-   ```env
-   EMAIL_PASSWORD="xxxxxxxxxxxxxxxx"
-   ```
-7. Run: `python agent.py`
+If blocked → use test mode:
 
-**If 2FA is blocked**, use **test mode instead**:
 ```bash
 python agent.py --test
 ```
 
 ---
 
-### "❌ Error querying Overpass API: 504 Server Error"
+### Overpass API Timeout
 
-**Solution:** Overpass API servers are overloaded.
+✔ Servers may be overloaded
+✔ Wait 20–30 minutes
+✔ Test mode works instantly
 
-Options:
-- ✅ Wait 30 minutes and try again
-- ✅ Use test mode with mock data: `python agent.py --test`
-- ✅ Check status: https://overpass-api.de/status
-
-The agent will automatically use mock restaurant data if all Overpass endpoints fail.
+Status: [https://overpass-api.de/status](https://overpass-api.de/status)
 
 ---
 
-### "openai.RateLimitError: insufficient_quota"
+### OpenAI Quota Error
 
-**Solution:** Your OpenAI account has no API quota.
-
-Options:
-1. **Add billing** to [platform.openai.com/account/billing](https://platform.openai.com/account/billing)
-2. **Use fallback emails** – Agent automatically uses professional template
-3. **Use test mode** – `python agent.py --test` (uses fallback emails)
+✔ Add billing **or**
+✔ Let fallback email handle it automatically
 
 ---
 
-### No restaurants found
-
-Check:
-- ✅ Correct coordinates in `LOCATION_COORDS`
-- ✅ Format: `"latitude,longitude"` (e.g., `"26.9124,75.7873"`)
-- ✅ Location has restaurants on OpenStreetMap
-- ✅ Internet connection is working
-
-Try test mode with mock data:
-```bash
-python agent.py --test
-```
-
----
-
-## 📊 Output Example
-
-```
-🚀 Agent started...
-
-🔍 Searching for restaurants using OpenStreetMap...
-🔄 Trying Overpass endpoint: https://overpass-api.de/api/interpreter
-✅ Successfully queried Overpass API
-✅ Found 47 restaurants from OpenStreetMap
-
-🧹 Filtering restaurants without websites...
-5 restaurants have NO website
-
-✉️ Preparing email for Pizza Palace
-⚠️ OpenAI API error: insufficient_quota
-💡 Using fallback email template instead...
-
-✉️ Generating AI email for Pizza Palace...
-✅ Email sent to pizza@example.com
-📊 Logged in data/contacts.csv
-
-🎯 Agent finished successfully.
-```
-
----
-
-## 🚀 Advanced Features
+## 📈 Customization
 
 ### Change Search Radius
 
-In `agent.py`, modify:
 ```python
-restaurants = get_restaurants(
-    location=LOCATION_COORDS,
-    radius=5000  # Change to 5km instead of 3km
-)
+radius=5000  # 5km
 ```
 
----
+### Change City
 
-### Use Different Location
-
-In `.env`, change:
 ```env
-LOCATION_COORDS="40.7128,-74.0060"  # New York
+LOCATION_COORDS="28.7041,77.1025"  # Delhi
 ```
 
-Common coordinates:
-- **Jaipur**: 26.9124,75.7873
-- **Delhi**: 28.7041,77.1025
-- **Mumbai**: 19.0760,72.8777
-- **NYC**: 40.7128,-74.0060
-- **London**: 51.5074,-0.1278
-
 ---
 
-### Use Local LLM (Ollama) Instead of OpenAI
+## 🔮 Future Enhancements
 
-Install [Ollama](https://ollama.ai), then run:
-```bash
-ollama pull mistral
-ollama serve
-```
-
-Then update `utils/ai_email.py` to use local LLM. (I can help with this!)
-
----
-
-## 📈 Future Improvements
-
-- [ ] WhatsApp fallback messaging
-- [ ] Facebook/Instagram email scraping
-- [ ] Follow-up email automation
-- [ ] Reply analysis using AI
-- [ ] Web scraping for contact info
-- [ ] CLI support (`--city jaipur --radius 5km`)
-- [ ] Dashboard for email tracking
-
----
-
-## 💡 Tips for Success
-
-1. **Start small** – Test with 5-10 emails first
-2. **Personalize emails** – The fallback template is generic but works
-3. **Track responses** – Note which emails get replies
-4. **Improve copy** – Adjust email template based on results
-5. **Follow up** – Send 2-3 follow-ups to non-responders
-6. **Build relationship** – Focus on value, not sales pitch
+* WhatsApp outreach
+* Follow‑up automation
+* Reply sentiment analysis
+* Admin dashboard
+* Local LLM support (Ollama)
 
 ---
 
 ## 👤 Author
 
-**Vansh Arora**  
-Frontend Developer & AI Enthusiast
+**Vansh Arora**
+Frontend Developer · AI Enthusiast
 
-This project is built for learning, ethical outreach, and real-world freelancing.
+Built for learning, freelancing, and ethical outreach.
 
 ---
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
+MIT License — free to use, modify, and learn from.
 
 ---
 
-✅ **Ready to find restaurant clients? Run `python agent.py` now!**
-#   W E B D E V - J O B - F I N D E R 
- 
- #   W E B D E V - J O B - F I N D E R 
- 
- 
+🚀 **Ready to find real frontend clients?**
+Run:
+
+```bash
+python agent.py
+```
