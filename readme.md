@@ -165,19 +165,39 @@ name,email,status,timestamp
 
 ## ▶️ Running the Agent
 
-### Test Mode (Preview - No Emails Sent)
+### 🧪 Test Mode (Preview - No Emails Sent)
+
+```bash
+python agent.py --test
+```
+
+**This is the BEST way to start!** The agent will:
+- ✅ Search for mock restaurants
+- ✅ Filter those without websites
+- ✅ Generate AI emails (or use fallback)
+- ✅ Preview emails in console
+- ✅ Log to CSV
+- ❌ **NOT send any emails** (no Gmail risk)
+
+Perfect for **testing and demos**! 🎉
+
+---
+
+### 📧 Real Email Sending Mode
+
+Once you have Gmail App Password set up:
 
 ```bash
 python agent.py
 ```
 
-This will:
+The agent will:
 - ✅ Search for restaurants
-- ✅ Filter them
-- ✅ Generate emails
-- ❌ NOT send emails (for safety)
-
-Check the console output to review results.
+- ✅ Filter those without websites  
+- ✅ Generate personalized AI emails
+- ✅ **Actually send emails** to restaurants
+- ✅ Log all sent/failed emails
+- ⏱️ Wait 4 seconds between emails (rate limit)
 
 ---
 
@@ -232,11 +252,39 @@ This agent is designed for **ethical, value-based outreach**, not spam.
 
 ## 🐛 Troubleshooting
 
+### "❌ Failed to send email: Username and Password not accepted"
+
+**Solution:** Gmail requires an **App Password**, not your regular password.
+
+Steps:
+1. Go to: https://myaccount.google.com/security
+2. Enable **2-Step Verification** (if not already enabled)
+3. Go to: https://myaccount.google.com/apppasswords
+4. Select: **Mail** → **Windows Computer**
+5. Copy the 16-character password **WITHOUT spaces**
+6. Update `.env`:
+   ```env
+   EMAIL_PASSWORD="xxxxxxxxxxxxxxxx"
+   ```
+7. Run: `python agent.py`
+
+**If 2FA is blocked**, use **test mode instead**:
+```bash
+python agent.py --test
+```
+
+---
+
 ### "❌ Error querying Overpass API: 504 Server Error"
 
-**Solution:** Overpass API servers are overloaded. The agent will automatically try alternative endpoints. Wait a few minutes and try again.
+**Solution:** Overpass API servers are overloaded.
 
-Check status: https://overpass-api.de/status
+Options:
+- ✅ Wait 30 minutes and try again
+- ✅ Use test mode with mock data: `python agent.py --test`
+- ✅ Check status: https://overpass-api.de/status
+
+The agent will automatically use mock restaurant data if all Overpass endpoints fail.
 
 ---
 
@@ -246,20 +294,8 @@ Check status: https://overpass-api.de/status
 
 Options:
 1. **Add billing** to [platform.openai.com/account/billing](https://platform.openai.com/account/billing)
-2. **Use fallback emails** – Agent will still work with professional template
-3. **Use local LLM** (Ollama) – No API key needed
-
----
-
-### "❌ SMTPAuthenticationError: Login failed"
-
-**Solution:** Gmail credentials are wrong.
-
-Check:
-- ✅ Using **App Password** (not regular Gmail password)
-- ✅ 2FA is enabled on Gmail account
-- ✅ No spaces in `.env` file
-- ✅ Correct email format
+2. **Use fallback emails** – Agent automatically uses professional template
+3. **Use test mode** – `python agent.py --test` (uses fallback emails)
 
 ---
 
@@ -270,6 +306,11 @@ Check:
 - ✅ Format: `"latitude,longitude"` (e.g., `"26.9124,75.7873"`)
 - ✅ Location has restaurants on OpenStreetMap
 - ✅ Internet connection is working
+
+Try test mode with mock data:
+```bash
+python agent.py --test
+```
 
 ---
 
@@ -380,6 +421,8 @@ This project is open source and available under the MIT License.
 ---
 
 ✅ **Ready to find restaurant clients? Run `python agent.py` now!**
-#   W E B D E V - J O B - F I N D E R  
- #   W E B D E V - J O B - F I N D E R  
+#   W E B D E V - J O B - F I N D E R 
+ 
+ #   W E B D E V - J O B - F I N D E R 
+ 
  
